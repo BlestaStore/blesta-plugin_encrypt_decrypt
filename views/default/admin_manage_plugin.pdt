@@ -1,0 +1,92 @@
+<?php
+$this->Widget->clear();
+$this->Widget->create($this->_('AdminManagePlugin.page_title', true));
+$this->Form->create();
+?>
+
+<div class="inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title_row">
+                <h3><?php echo $this->_('AdminManagePlugin.encrypt_title', true);?></h3>
+            </div>
+
+            <div class="pad">
+                <ul>
+                    <li>
+                        <div class="form-group">
+                            <?php
+                            $this->Form->label($this->_('AdminManagePlugin.encrypt_label', true), 'encrypt_text', ['class' => 'control-label']);
+                            $this->Form->fieldText('encrypt_text', $this->Html->ifSet($vars['encrypt_text']), ['id' => 'encrypt_text', 'class' => 'form-control']);
+                            ?>
+                        </div>
+                    </li>
+                </ul>
+                <div class="links_row">
+                    <a class="btn btn-primary submit pull-right" id="encrypt" href="#">
+                        <span><?php echo $this->_('AdminManagePlugin.encrypt_submit', true);?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="title_row">
+                <h3><?php echo $this->_('AdminManagePlugin.decrypt_title', true);?></h3>
+            </div>
+
+            <div class="pad">
+                <ul>
+                    <li>
+                        <div class="form-group">
+                            <?php
+                            $this->Form->label($this->_('AdminManagePlugin.decrypt_label', true), 'decrypt_text', ['class' => 'control-label']);
+                            $this->Form->fieldText('decrypt_text', $this->Html->ifSet($vars['decrypt_text']), ['id' => 'decrypt_text', 'class' => 'form-control']);
+                            ?>
+                        </div>
+                    </li>
+                </ul>
+                <div class="links_row">
+                    <a class="btn btn-primary submit pull-right" href="#" id="decrypt">
+                        <span><?php echo $this->_('AdminManagePlugin.decrypt_submit', true);?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$this->Form->end();
+$this->Widget->end();
+?>
+
+<script>
+document.getElementById('encrypt_text').addEventListener('input', function() {
+    const encryptText = this.value.trim();
+    const decryptText = document.getElementById('decrypt_text').value.trim();
+    const decryptButton = document.getElementById('decrypt');
+
+    if (encryptText !== '') {
+        document.getElementById('decrypt_text').setAttribute('disabled', 'disabled');
+        decryptButton.setAttribute('disabled', 'disabled');
+    } else {
+        document.getElementById('decrypt_text').removeAttribute('disabled');
+        decryptButton.removeAttribute('disabled');
+    }
+});
+
+document.getElementById('decrypt_text').addEventListener('input', function() {
+    const decryptText = this.value.trim();
+    const encryptText = document.getElementById('encrypt_text').value.trim();
+    const encryptButton = document.getElementById('encrypt');
+
+    if (decryptText !== '') {
+        document.getElementById('encrypt_text').setAttribute('disabled', 'disabled');
+        encryptButton.setAttribute('disabled', 'disabled');
+    } else {
+        document.getElementById('encrypt_text').removeAttribute('disabled');
+        encryptButton.removeAttribute('disabled');
+    }
+});
+</script>

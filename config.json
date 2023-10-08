@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "name": "EncryptDecryptPlugin.name",
+    "description": "EncryptDecryptPlugin.description",
+    "authors": [
+        {
+            "name": "Blesta Store",
+            "url": "https://blesta.store"
+        }
+    ]
+}
